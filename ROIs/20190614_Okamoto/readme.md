@@ -19,4 +19,4 @@ see `Makefile`
 
  * `./00_mk_coord_img.bash` makes `RFFA_all_HORFFmasked.nii.gz` with 10mm radius spheres masked by harvard oxford FF annotation
  * `./01_warp_to_subject.bash` makes e.g. `native_space/102/102_faces_usa_RFFA_func.nii.gz` and `102_RFA_mprage`
- * `./02_link_like_BL.bash` offers 3dcopy suggestion to matching previous runs
+ * `./02_link_like_BL.bash` offers `3dcopy` suggestion to matching previous runs

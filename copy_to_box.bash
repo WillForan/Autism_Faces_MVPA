@@ -12,10 +12,10 @@
 cd $(dirname $0) # make sure we are where the script is
 
 # copy new files (by size comparison only) 
-rclone copy -v --size-only results box:backup/TX/Autism_Faces/Andrew/MVPA/results --exclude template_brain.nii --exclude mprage.nii.gz --dry-run
+rclone copy -v --size-only results box:backup/TX/Autism_Faces/Andrew/MVPA/results --exclude template_brain.nii --exclude mprage.nii.gz 
 rclone copy -v --size-only ROIs box:backup/TX/Autism_Faces/Andrew/MVPA/ROIs \
   --exclude '[12][0-9][0-9]_mprage.nii.gz' --exclude '[12][0-9][0-9]_cars_func.nii.gz' \
   --exclude '[12][0-9][0-9]_faces_usa_func.nii.gz' --exclude '[12][0-9][0-9]_faces_aus_func.nii.gz' \
-  --dry-run
+  
 
 

@@ -8,7 +8,7 @@
 #       should be mprage space?
 # 20190614WF
 
-USEMPRAGE=""
+USEMPRAGE="yes"
 #"yes" for mprage,  "" for func
 #  MPRAGE |  SEARCHES                            | SAVES 
 # --------|--------------------------------------|-------
@@ -34,12 +34,13 @@ for f in native_space/*/*_RFFA_*.nii.gz; do
    cat coords.txt | while read x y z i maskname; do
      # use zero based indexing and make underscore a hyphen
      let i--
-     maskname=${maskname/_/-}
+     maskname=${maskname/_/-}-FFA
 
      # copy to corrected name 
-     echo "3dcopy $f[$i] /Volumes/TX/Autism_Faces/Andrew/MVPA/results/$subj.results/${subj}_${maskname}_masked_${exprmt}+orig"
+     outname=/Volumes/TX/Autism_Faces/Andrew/MVPA/results/$subj.results/${subj}_${maskname}_masked_${exprmt}+orig
+     [ -r $outname.HEAD ] && continue
+     3dTcat -prefix  $outname $f[$i]
    done
 
-   # TODO: remove me (and the echo) to really run
-   break
+   #break
 done
