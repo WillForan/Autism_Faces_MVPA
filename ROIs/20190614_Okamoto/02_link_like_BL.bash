@@ -28,6 +28,9 @@ for f in native_space/*/*_RFFA_*.nii.gz; do
    fi
    subj=${BASH_REMATCH[1]}
 
+   full_mask=/Volumes/TX/Autism_Faces/Andrew/MVPA/results/$subj.results/full_mask.$subj+orig.HEAD
+   [ ! -r $full_mask ] && echo "$subj missing $full_mask" && continue
+
    echo $subj $f
 
    # for each roi in coordates read index and maskname
@@ -37,9 +40,12 @@ for f in native_space/*/*_RFFA_*.nii.gz; do
      maskname=${maskname/_/-}-FFA
 
      # copy to corrected name 
-     outname=/Volumes/TX/Autism_Faces/Andrew/MVPA/results/$subj.results/${subj}_${maskname}_masked_${exprmt}+orig
-     [ -r $outname.HEAD ] && continue
-     3dTcat -prefix  $outname $f[$i]
+     outname_tmp=/Volumes/TX/Autism_Faces/Andrew/MVPA/results/$subj.results/${subj}_${maskname}_masked_${exprmt}_highres+orig
+     outname_final=/Volumes/TX/Autism_Faces/Andrew/MVPA/results/$subj.results/${subj}_${maskname}_masked_${exprmt}+orig
+     # [ -r $outname_final.HEAD ] && continue
+     3dTcat -overwrite -prefix  $outname_tmp $f[$i] 
+     3dresample -overwrite -inset $outname_tmp -prefix $outname_final -master $full_mask -rmode NN
+     rm $outname_tmp*
    done
 
    #break
