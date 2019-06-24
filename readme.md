@@ -19,7 +19,7 @@ in `scripts/mask.bash`
 ```
 
 ### new scripts
-20190624
+20190624 - `RSA_20190614_Okamoto.m`
 ```
  rclone copy --dry-run -v --size-only box:backup/TX/Autism_Faces/Andrew/MVPA/RSA_scripts RSA_scripts
      makeANOVAtable_newROIs_20190618.m: Copied (new)
@@ -36,4 +36,4 @@ in `scripts/mask.bash`
 > They should be run in that order. The first one could take a few minutes. Really hoping they just work and there is no debugging needed!! �
 
 * update `RSA_scripts/parseSubInfo.m` and `addpath('/usr/share/afni/matlab/')`
-* use native space resolution for mask instead of mprage (`3x3x4` not `1x1x1`) in `ROIs/20190614_Okamoto/02_link_like_BL.bash`
+* use native space resolution for mask instead of mprage (`3x3x4` not `1x1x1`) replacing old roi creation with `ROIs/20190614_Okamoto/01_warp_to_coreg.bash`
